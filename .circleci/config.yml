@@ -3,6 +3,7 @@ executors:
   docker-executor:
     docker:
       - image: nginx:latest
+      - image: docker:20.10.8
      
 
 jobs:
