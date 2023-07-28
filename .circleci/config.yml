@@ -1,17 +1,8 @@
 version: 2.1
 jobs:
-  build_test:
-    docker:
-      - image: circleci/node:latest
-    steps:
-      - checkout
-      - run:
-          name: Install npm dependencies
-          command: |
-            npm install --save
   build_docker_image:
     docker:
-      - image: circleci/node:latest
+      - image: nginx:latest
     steps:
       - checkout
       - setup_remote_docker:
@@ -26,5 +17,4 @@ jobs:
 workflows:
   build_test:
     jobs:
-      - build_test
       - build_docker_image
