@@ -1,14 +1,8 @@
 version: 2.1
-executors:
-  docker-executor:
-    docker:
-      - image: nginx:latest
-      - image: docker:20.10.8
-     
-
 jobs:
   build_docker_image:
-    executor: docker-executor
+    docker:
+      - image: docker:stable
     steps:
       - checkout
       - setup_remote_docker:
@@ -23,4 +17,9 @@ jobs:
 workflows:
   build_test:
     jobs:
-      - build_docker_image
+      - build_docker_image:
+          context:
+            - DOCKER_USER
+            - DOCKER_PASSWORD
+
+
