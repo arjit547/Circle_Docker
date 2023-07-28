@@ -1,8 +1,13 @@
 version: 2.1
-jobs:
-  build_docker_image:
+executors:
+  docker-executor:
     docker:
       - image: nginx:latest
+     
+
+jobs:
+  build_docker_image:
+    executor: docker-executor
     steps:
       - checkout
       - setup_remote_docker:
